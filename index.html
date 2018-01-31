@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Sex Issue Countdown</title>
+	</head>
+
+	<body>
+		<div id="countdown">
+			<div>
+				<span class="days"></span>
+				<div class="subhead">Days</div>
+			</div>
+			<div>
+				<span class="hours"></span>
+				<div class="subhead">Hours</div>
+			</div>
+			<div>
+				<span class="minutes"></span>
+				<div class="subhead">Minutes</div>
+			</div>
+			<div>
+				<span class="seconds"></span>
+				<div class="subhead">Seconds</div>
+			</div>
+		</div>
+
+		<script>
+			var countDown = new Date("Feb 10, 2018 15:00:00").getTime(); //sets date to be counted down to 
+
+			var reset = setInterval(function() {  //update every second
+				var now = new Date().getTime(); //current date and time
+				var length = countDown - now; //how much time is left
+
+				var days = Math.floor(length / (1000 * 60 * 60 * 24));
+				var hours = Math.floor((length % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+				var minutes = Math.floor((length % (1000 * 60 * 60)) / (1000 * 60));
+				var seconds = Math.floor((length % (1000 * 60)) / 1000);
+
+				document.getElementById("countdown").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+
+				if (length < 0) { //when countdown is done
+					clearInterval(reset);
+					document.getElementById("countdown").innerHTML = "Done!";
+				}
+			}, 1000);
+		</script>
+	</body>
+</html>
